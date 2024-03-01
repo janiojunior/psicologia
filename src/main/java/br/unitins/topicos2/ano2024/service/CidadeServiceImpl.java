@@ -31,7 +31,7 @@ public class CidadeServiceImpl implements CidadeService {
 
     @Override
     public List<CidadeResponseDTO> getAll() {
-        List<Cidade> list = cidadeRepository.listAll();
+        List<Cidade> list = cidadeRepository.findAll2();
         return list.stream().map(e -> CidadeResponseDTO.valueOf(e)).collect(Collectors.toList());
     }
 
