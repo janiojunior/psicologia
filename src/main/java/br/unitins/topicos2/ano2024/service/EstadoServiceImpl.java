@@ -27,11 +27,14 @@ public class EstadoServiceImpl implements EstadoService {
     Validator validator;
 
     @Override
-    public List<EstadoResponseDTO> getAll() {
-
-        List<Estado> list = estadoRepository.findAll().list();
+    public List<EstadoResponseDTO> getAll(int page, int pageSize) {
+        List<Estado> list = estadoRepository
+                                .findAll()
+                                .page(page, pageSize)
+                                .list();
+        
         return list.stream().map(e -> EstadoResponseDTO.valueOf(e)).collect(Collectors.toList());
-    }
+    }    
 
     @Override
     public EstadoResponseDTO findById(Long id) {
@@ -92,8 +95,4 @@ public class EstadoServiceImpl implements EstadoService {
         return estadoRepository.count();
     }
 
-    @Override
-    public long countByNome(String nome) {
-        return estadoRepository.findByNome(nome).count();
-    }
 }

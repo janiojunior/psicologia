@@ -9,7 +9,7 @@ import jakarta.validation.Valid;
 public interface EstadoService {
 
         // recursos basicos
-        List<EstadoResponseDTO> getAll();
+        List<EstadoResponseDTO> getAll(int page, int pageSize);
 
         EstadoResponseDTO findById(Long id);
     
@@ -25,6 +25,4 @@ public interface EstadoService {
     
         long count();
 
-        long countByNome(String nome);
-    
 }
