@@ -7,7 +7,13 @@ import java.util.stream.Collectors;
 import br.unitins.topicos2.ano2024.dto.PacienteDTO;
 import br.unitins.topicos2.ano2024.dto.PacienteResponseDTO;
 import br.unitins.topicos2.ano2024.model.Paciente;
+import br.unitins.topicos2.ano2024.model.Pessoa;
+import br.unitins.topicos2.ano2024.model.Usuario;
+import br.unitins.topicos2.ano2024.repository.CidadeRepository;
 import br.unitins.topicos2.ano2024.repository.PacienteRepository;
+import br.unitins.topicos2.ano2024.repository.PessoaRepository;
+import br.unitins.topicos2.ano2024.repository.UsuarioRepository;
+import br.unitins.topicos2.ano2024.validation.ValidationException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -22,6 +28,15 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Inject
     PacienteRepository pacienteRepository;
+
+    @Inject
+    CidadeRepository cidadeRepository;
+
+    @Inject
+    PessoaRepository pessoaRepository;
+
+    @Inject
+    UsuarioRepository usuarioRepository;
 
     @Inject
     Validator validator;
@@ -47,7 +62,35 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     @Transactional
     public PacienteResponseDTO create(@Valid PacienteDTO pacienteDTO) throws ConstraintViolationException {
-        return null;
+        validarDados(pacienteDTO);
+       
+        Usuario usuario = new Usuario();
+        usuario.setUsername(pacienteDTO.username());
+        usuario.setSenha(pacienteDTO.senha());
+        usuarioRepository.persist(usuario);
+        
+        Pessoa pessoa = new Pessoa();
+        pessoa.setCpf(pacienteDTO.cpf());
+        pessoa.setDataNascimento(pacienteDTO.dataNascimento());
+        pessoa.setNome(pacienteDTO.nome());
+        pessoa.setUsuario(usuario);
+        pessoaRepository.persist(pessoa);
+
+        Paciente paciente = new Paciente();
+        paciente.setNaturalidade(cidadeRepository.findById(pacienteDTO.idNaturalidade()));
+        paciente.setPessoa(pessoa);
+        pacienteRepository.persist(paciente);
+        
+        return PacienteResponseDTO.valueOf(paciente);
+    }
+
+    private void validarDados(PacienteDTO pacienteDTO) {
+        if (usuarioRepository.findByUsername(pacienteDTO.username()).firstResult() != null) 
+            throw new ValidationException("username", "Username indisponível.");
+        
+        if (pessoaRepository.findByCpf(pacienteDTO.cpf()).firstResult() != null) 
+            throw new ValidationException("cpf", "Ja existe este cpf cadastrado.");
+
     }
 
     @Override

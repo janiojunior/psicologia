@@ -2,12 +2,14 @@ package br.unitins.topicos2.ano2024.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pessoa extends DefaultEntity {
+    @Column(unique = true)
     private String cpf;
     private String nome;
     private LocalDate dataNascimento;
