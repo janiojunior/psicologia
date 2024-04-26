@@ -1,18 +1,21 @@
 package br.unitins.topicos2.ano2024.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Usuario extends DefaultEntity {
-    private String userName;
+
+    @Column(unique = true)
+    private String username;
     private String senha;
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSenha() {

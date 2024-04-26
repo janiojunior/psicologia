@@ -8,13 +8,13 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Paciente extends DefaultEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "id_cidade")
-    private Cidade naturalidade;
-
     @OneToOne
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id", unique = true)
     private Pessoa pessoa;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cidade")
+    private Cidade naturalidade;
 
     public Cidade getNaturalidade() {
         return naturalidade;
