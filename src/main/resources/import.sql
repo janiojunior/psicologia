@@ -10,7 +10,8 @@ insert into cidade (nome, id_estado) values( 'Gurupi', 1);
 insert into cidade (nome, id_estado) values( 'Goiânia', 2);
 insert into cidade (nome, id_estado) values( 'Anápolis', 2);
 
-insert into usuario (username, senha) values ('janio', '111');
+-- senha 111
+insert into usuario (username, senha) values ('janio', '1BTSU7LatsY6BK9FYiXT9du++eWLisRMBwGyxbRSh0ZpH0p3jIIAWh1+Ta/zBagkeJa/NwPo5XngKb/REUH74g==');
 insert into usuario (username, senha) values ('leandra', '222');
 insert into usuario (username, senha) values ('carlos', '333');
 

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.unitins.topicos2.ano2024.dto.PacienteDTO;
 import br.unitins.topicos2.ano2024.dto.PacienteResponseDTO;
+import br.unitins.topicos2.ano2024.dto.UsuarioResponseDTO;
 import br.unitins.topicos2.ano2024.model.Paciente;
 import br.unitins.topicos2.ano2024.model.Pessoa;
 import br.unitins.topicos2.ano2024.model.Usuario;
@@ -125,6 +126,15 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     public long count() {
         return pacienteRepository.count();
+    }
+
+    @Override
+    public UsuarioResponseDTO findByUsernameAndSenha(String username, String senha) {
+        Paciente paciente = pacienteRepository.findByUsernameAndSenha(username, senha).firstResult();
+
+        if (paciente == null)
+            throw new ValidationException(username, "Username ou senha inválido");
+        return UsuarioResponseDTO.valueOf(paciente.getPessoa());
     }
 
 }
