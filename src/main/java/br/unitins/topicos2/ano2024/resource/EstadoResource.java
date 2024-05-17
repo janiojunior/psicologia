@@ -32,6 +32,7 @@ public class EstadoResource {
     private static final Logger LOG = Logger.getLogger(EstadoResource.class);
 
     @POST
+    @RolesAllowed("Paciente")
     public Response create(EstadoDTO dto) {
         EstadoResponseDTO retorno = service.create(dto);
         //return Response.status(Status.CREATED).entity(retorno).build();
@@ -55,6 +56,7 @@ public class EstadoResource {
     }
 
     @GET
+    @RolesAllowed("Paciente")
     public Response findAll(
                 @QueryParam("page") @DefaultValue("0") int page,
                 @QueryParam("pageSize") @DefaultValue("100") int pageSize) {

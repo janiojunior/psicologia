@@ -30,6 +30,7 @@ public class CidadeResource {
     private static final Logger LOG = Logger.getLogger(CidadeResource.class);
 
     @POST
+    @RolesAllowed({"Psicologo"})
     public Response create(CidadeDTO dto) {
         CidadeResponseDTO retorno = service.create(dto);
         //return Response.status(Status.CREATED).entity(retorno).build();
@@ -53,6 +54,7 @@ public class CidadeResource {
     }
 
     @GET
+    @RolesAllowed({"Psicologo"})
     public Response findAll() {
         LOG.debug("Exemplo de debug.");
         return Response.ok(service.getAll()).build();
