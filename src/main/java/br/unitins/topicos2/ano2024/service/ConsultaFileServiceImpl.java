@@ -86,7 +86,6 @@ public class ConsultaFileServiceImpl implements FileService {
 
     @Override
     public File download(String nomeArquivo) {
-        System.out.println(PATH_USER+nomeArquivo);
         File file = new File(PATH_USER+nomeArquivo);
         return file;
     } 
