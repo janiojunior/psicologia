@@ -26,15 +26,15 @@ insert into paciente (id_pessoa, id_cidade) values (4, 2);
 
 insert into psicologo(crp, id_pessoa) values ('444', 3);
 
-insert into consulta (nome, preco) values ('Avulsa', 200.00);
-insert into consulta (nome, preco) values ('Pacote 1', 400.00);
-insert into consulta (nome, preco) values ('Pacote 2', 600.00);
-insert into consulta (nome, preco) values ('Pacote 3', 800.00);
-insert into consulta (nome, preco) values ('Pacote 4', 1000.00);
-insert into consulta (nome, preco) values ('Pacote 5', 1200.00);
-insert into consulta (nome, preco) values ('Pacote 6', 1400.00);
-insert into consulta (nome, preco) values ('Pacote 7', 1600.00);
-insert into consulta (nome, preco) values ('Pacote 8', 1800.00);
+insert into consulta (nome, preco, nomeImagem) values ('Avulsa', 200.00, 'pacote1.jpeg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 1', 400.00, 'pacote2.jpeg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 2', 600.00, 'pacote3.jpg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 3', 800.00, 'pacote4.jpg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 4', 1000.00, 'pacote5.jpg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 5', 1200.00, 'pacote6.jpg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 6', 1400.00, 'pacote1.jpeg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 7', 1600.00, 'pacote2.jpeg');
+insert into consulta (nome, preco, nomeImagem) values ('Pacote 8', 1800.00, 'pacote3.jpg');
 
 insert into consultaavulsa (id, tipoConsulta) values (1, 1);
 

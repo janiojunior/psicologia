@@ -9,7 +9,7 @@ import jakarta.persistence.InheritanceType;
 public class Consulta extends DefaultEntity {
     private String nome;
     private Double preco;
-    //private Psicologo psicologo;
+    private String nomeImagem;
 
     public String getNome() {
         return nome;
@@ -27,12 +27,12 @@ public class Consulta extends DefaultEntity {
         this.preco = preco;
     }
 
-    // public Psicologo getPsicologo() {
-    //     return psicologo;
-    // }
+    public String getNomeImagem() {
+        return nomeImagem;
+    }
 
-    // public void setPsicologo(Psicologo psicologo) {
-    //     this.psicologo = psicologo;
-    // }
+    public void setNomeImagem(String nomeImagem) {
+        this.nomeImagem = nomeImagem;
+    }
 
 }
